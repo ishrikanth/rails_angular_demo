@@ -1,1 +1,131 @@
 /* You can add global styles to this file, and also import other style files */
+i.style-toggle-btn {
+  position: fixed;
+  z-index: 55555;
+  top: 100px;
+  right: 0;
+  color: #FFF;
+  background: #777878;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 3px 0 0 3px;
+  cursor: pointer;
+}
+.style-toggle {
+  position: fixed;
+  z-index: 55555;
+  top: 100px;
+  right: 0;
+  background: #777878 /9;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 3px 0 0 3px;
+}
+.style-toggle > i {
+  color: #FFF;
+  cursor: pointer;
+}
+.style-toggle ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.style-toggle ul > li {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #FFF;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+.style-toggle ul > li.green {
+  background: #27ae60;
+}
+
+/* ===== Style Colors ===== */
+
+/* Text Colors */
+
+.body-green .text-color {
+  color: #27ae60;
+}
+
+/* Link Colors */
+
+.body-green a {
+  color: #27ae60;
+}
+
+
+/* Border Colors */
+
+.body-green .border-color {
+  border-color: #27ae60;
+}
+
+
+/* Background Colors */
+
+.body-green .background-color {
+  background-color: #27ae60;
+}
+
+.body-green .bg-hover-color:hover {
+  background-color: #229652;
+}
+
+/* Buttons */
+
+.btn-primary, .btn-success, .btn-info, .btn-warning, .bnt-danger, .btn-color {
+  color: #FFF !important;
+}
+.btn-default {
+  color: #333 !important;
+}
+.body-green .btn-link:hover {
+  color: #27ae60;
+}
+.body-green .btn-color {
+  background-color: #27ae60;
+  border-color: #229652;
+}
+.body-green .btn-color:hover,
+.body-green .btn-color:focus,
+.body-green .btn-color:active {
+  background-color: #229652;
+  border-color: #1A7440;
+}
+
+.top-bar {
+  background: #555;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 10px 0;
+}
+
+
+.top-bar ul {
+  margin-bottom: 0;
+}
+
+.top-bar a.login-btn i, .top-bar a.signup-btn i {
+  margin-right: 10px;
+}
+
+.top-bar ul.social-custom a:hover {
+  background: #4fbfa8;
+  color: #fff;
+}
+a:focus, a:hover {
+  color: #348e7b;
+  text-decoration: underline;
+}
+.top-bar a.login-btn, .top-bar a.signup-btn {
+  color: #eee;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-right: 10px;
+  text-align: right;
+}
