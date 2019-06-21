@@ -1,0 +1,128 @@
+<div class="pull-right  p-3">
+  <button type="button" class="btn btn-primary" (click)="openModal()">Add Task</button>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Task</h4>
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-white">
+          <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="email" formControlName="title" class="form-control" id="title" placeholder="Enter Title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Title is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" id="description" placeholder="Description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f.description.errors }" ></textarea>
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.required">Description is required</div>
+                   </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-color btn-xxl">Create</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+<section class="swimlanes  p-3">
+  <div class="swimlanes__column">
+    <h6>
+      <!-- Heading structure [BoardName]: [ListName]. Where boardName links to the Board -->
+      <a href="#">Backlog</a>: Title is super long goes onto two lines
+    </h6>
+    <ul class="swimlanes__list">
+      <li class="swimlanes__listItem">
+        <div class="example-container">
+          <div id="backlog"
+            cdkDropList
+            #backlogTasksList="cdkDropList"
+            [cdkDropListData]="backlogTasks"
+            [cdkDropListConnectedTo]="[inProgressTaskList,testingTaskList,doneTasksList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let backlogTask of backlogTasks"  cdkDrag>{{backlogTask.title}}<p>{{backlogTask.description}}</p></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="swimlanes__column">
+    <h6>
+      <a href="#">Design</a>: In Progress
+    </h6>
+    <ul class="swimlanes__list">
+      <li class="swimlanes__listItem">
+        <div class="example-container">
+          <div id="inprogress"
+            cdkDropList
+            #inProgressTaskList="cdkDropList"
+            [cdkDropListData]="inProgressTasks"
+            [cdkDropListConnectedTo]="[backlogTasksList,testingTaskList,doneTasksList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let inProgressTask of inProgressTasks" cdkDrag>{{inProgressTask.title}}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="swimlanes__column">
+    <h6>
+      <a href="#">Design</a>: Testing
+    </h6>
+    <ul class="swimlanes__list">
+      <li class="swimlanes__listItem">
+        <div class="example-container">
+          <div id="testing"
+            cdkDropList
+            #testingTaskList="cdkDropList"
+            [cdkDropListData]="testingTasks"
+            [cdkDropListConnectedTo]="[backlogTasksList,inProgressTaskList,doneTasksList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let testingTask of testingTasks" cdkDrag>{{testingTask.title}}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="swimlanes__column">
+    <h6>
+      <a href="#">Design</a>: Done
+    </h6>
+    <ul class="swimlanes__list">
+      <li class="swimlanes__listItem">
+        <div class="example-container">
+          <div id="done"
+            cdkDropList
+            #doneTasksList="cdkDropList"
+            [cdkDropListData]="doneTasks"
+            [cdkDropListConnectedTo]="[backlogTasksList,inProgressTaskList,testingTaskList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let doneTask of doneTasks" cdkDrag>{{doneTask.title}}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
