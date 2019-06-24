@@ -1,10 +1,11 @@
-class TasksController < ApplicationController
+class Api::V1::TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = Task.all
+    render json: @tasks.to_json
   end
 
   # GET /tasks/1
@@ -29,7 +30,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        format.json {@task.to_json}
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }

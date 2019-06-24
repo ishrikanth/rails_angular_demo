@@ -40,6 +40,7 @@ export class SignupComponent implements OnInit {
     this.userService.registerUser(this.registerForm.value).pipe(first())
       .subscribe(
         data => {
+          this.userService.setToken(data.auth_token);
           this.alertService.success('Registration successful', true);
           this.router.navigate(['/todo']);
         },

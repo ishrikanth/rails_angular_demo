@@ -11,11 +11,11 @@ export class TaskService {
 
   createTask(task: Task){
     task.status = "backlog"
-    return this.http.post(this.API_BASE_URL+ "/tasks",{task: task});
+    return this.http.post(this.API_BASE_URL+ "/api/v1/tasks.json",{task: task});
   }
 
   getTasks(){
-    return this.http.get(this.API_BASE_URL+ "/tasks.json");
+    return this.http.get(this.API_BASE_URL+ "/api/v1/tasks.json");
   }
 
   updateTask(task: Task){

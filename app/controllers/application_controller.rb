@@ -2,6 +2,14 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   attr_reader :current_user
 
+  def payload(user)
+    return nil unless user and user.id
+    {
+        auth_token: JsonWebToken.encode({user_id: user.id}),
+        user: {id: user.id, email: user.email}
+    }
+  end
+
   protected
   def authenticate_request!
     unless user_id_in_token?

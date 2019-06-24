@@ -9,15 +9,21 @@ export class UserService {
   constructor(private  http: HttpClient) { }
 
   API_BASE_URL: string = "http://localhost:3002";
+  const TOKEN: string = "TOKEN";
 
   registerUser(user: User){
-    return this.http.post(this.API_BASE_URL+ "/users",{user: user});
+    return this.http.post(this.API_BASE_URL+ "/api/v1/sign_up.json",{user: user});
   }
 
   signinUser(user: User){
-    return this.http.post(this.API_BASE_URL+ "/users/sign_in",{user: user});
+    return this.http.post(this.API_BASE_URL+ "/api/v1/sign_in.json",{user: user});
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.TOKEN, token);
+  }
+
+  isLogged() {
+    return localStorage.getItem(this.TOKEN) != null;
   }
 }
-
-
-
