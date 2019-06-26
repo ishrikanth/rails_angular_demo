@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -12,6 +12,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewTodoComponent } from './new-todo/new-todo.component';
 import { SignoutComponent } from './signout/signout.component';
+import {BasicAuthInterceptor} from './auth/basic-auth-interceptor'
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { SignoutComponent } from './signout/signout.component';
     DragDropModule,
     BrowserAnimationsModule
   ],
-  providers: [AlertService],
+  providers: [AlertService, { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

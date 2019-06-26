@@ -40,9 +40,13 @@ export class SignupComponent implements OnInit {
     this.userService.registerUser(this.registerForm.value).pipe(first())
       .subscribe(
         data => {
-          this.userService.setToken(data.auth_token);
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['/todo']);
+          if(data.auth_token!=null){
+            this.userService.setToken(data.auth_token);
+            this.alertService.success('Registration successful', true);
+            this.router.navigate(['/todo']);
+          } else {
+              this.alertService.error("Registration Failed");
+          }
         },
         error => {
           this.alertService.error(error);

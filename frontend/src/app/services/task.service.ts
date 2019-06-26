@@ -11,7 +11,7 @@ export class TaskService {
 
   createTask(task: Task){
     task.status = "backlog"
-    return this.http.post(this.API_BASE_URL+ "/api/v1/tasks.json",{task: task});
+    return this.http.post<Task>(this.API_BASE_URL+ "/api/v1/tasks.json",{task: task});
   }
 
   getTasks(){

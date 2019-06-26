@@ -42,6 +42,10 @@ export class TodoComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(1)]],
     });
+    this.getAllTasks();
+  }
+
+  getAllTasks(){
     this.taskService.getTasks().subscribe((data: Task[])=>{
       data.forEach((task) =>{
         if(task.status == "backlog"){
@@ -56,6 +60,7 @@ export class TodoComponent implements OnInit {
       });
     });
   }
+
   get f() { return this.taskForm.controls; }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -84,6 +89,8 @@ export class TodoComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Task Created successfully', true);
+          this.onCloseHandled();
+          this.getAllTasks();
           this.router.navigate(['/todo']);
         },
         error => {

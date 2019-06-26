@@ -40,9 +40,13 @@ export class SigninComponent implements OnInit {
     this.userService.signinUser(this.signinForm.value).pipe(first())
       .subscribe(
         data => {
-          this.userService.setToken(data.auth_token);
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['/todo']);
+          if(data.auth_token!=null){
+            this.userService.setToken(data.auth_token);
+            this.alertService.success('Registration successful', true);
+            this.router.navigate(['/todo']);
+          } else {
+            this.alertService.error("Login Failed");
+          }
         },
         error => {
           this.alertService.error(error);
