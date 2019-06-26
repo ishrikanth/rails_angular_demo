@@ -1,20 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="wrapper body-inverse"> <!-- wrapper -->
-  <div class="top-bar">
-    <div class="container">
-      <div class="row d-flex align-items-center">
-        <div class="col-md-6 d-md-block d-none">
-        </div>
-        <div class="col-md-6 text-right">
-          <div class="login">
-            <a [routerLink] ="'/signin'" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a>
-            <a [routerLink] ="'/signup'" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a>
-          </div>
-        </div>
-      </div>
+<div class="top-bar">
+<nav class="navbar navbar-expand-md navbar-dark bg-blue">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/" (click)="setPageTitle('Blogger')">
+      <img src="assets/images/logo.png" alt="ToDO" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngIf="!isLogged()">
+          <a [routerLink]="'/signup'" class="signup-btn"><i class="fa fa-user"></i><span
+            class="d-none d-md-inline-block">Sign Up</span></a>
+        </li>
+        <li class="nav-item" *ngIf="!isLogged()">
+          <a [routerLink]="'/signin'" class="login-btn"><i class="fa fa-sign-in"></i><span
+            class="d-none d-md-inline-block">Sign In</span></a>
+        </li>
+        <li class="nav-item" *ngIf="isLogged()">
+          <a [routerLink]="'/signout'" class="signup-btn"><i class="fa fa-sign-out"></i><span
+            class="d-none d-md-inline-block">Logout</span></a>
+        </li>
+      </ul>
     </div>
   </div>
-
-
+</nav>
 </div>
+
 <router-outlet></router-outlet>

@@ -11,6 +11,7 @@ import { TodoComponent } from './todo/todo.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewTodoComponent } from './new-todo/new-todo.component';
+import { SignoutComponent } from './signout/signout.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NewTodoComponent } from './new-todo/new-todo.component';
     SignupComponent,
     SigninComponent,
     TodoComponent,
-    NewTodoComponent
+    NewTodoComponent,
+    SignoutComponent
   ],
   imports: [
     BrowserModule,

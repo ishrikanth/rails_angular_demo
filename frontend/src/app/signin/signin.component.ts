@@ -19,8 +19,6 @@ export class SigninComponent implements OnInit {
               private userService: UserService,
               private alertService: AlertService,
               private router: Router) {
-
-
   }
 
 
@@ -42,6 +40,7 @@ export class SigninComponent implements OnInit {
     this.userService.signinUser(this.signinForm.value).pipe(first())
       .subscribe(
         data => {
+          this.userService.setToken(data.auth_token);
           this.alertService.success('Registration successful', true);
           this.router.navigate(['/todo']);
         },
