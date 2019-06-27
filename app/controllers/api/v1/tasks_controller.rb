@@ -1,5 +1,6 @@
 class Api::V1::TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_request!
 
   # GET /tasks
   # GET /tasks.json
