@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-7911a": {
+      "hosting": {
+        "frontend": [
+          "angular-7911a"
+        ]
+      }
+    }
+  }
+}

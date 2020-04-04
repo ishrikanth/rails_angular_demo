@@ -12,8 +12,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewTodoComponent } from './new-todo/new-todo.component';
 import { SignoutComponent } from './signout/signout.component';
-import {BasicAuthInterceptor} from './auth/basic-auth-interceptor'
-
+import { BasicAuthInterceptor } from './auth/basic-auth-interceptor'
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import {environment} from "../environments/environment";
+import { PolicyListComponent } from './policy-list/policy-list.component';
+import {AngularFirestore} from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import {BasicAuthInterceptor} from './auth/basic-auth-interceptor'
     SigninComponent,
     TodoComponent,
     NewTodoComponent,
-    SignoutComponent
+    SignoutComponent,
+    PolicyListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +36,14 @@ import {BasicAuthInterceptor} from './auth/basic-auth-interceptor'
     FormsModule,
     HttpClientModule,
     DragDropModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
-  providers: [AlertService, { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }],
+  providers: [
+    AlertService, { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

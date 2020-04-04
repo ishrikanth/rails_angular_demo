@@ -1,0 +1,105 @@
+<div class="pull-right  p-3">
+  <button type="button" class="btn btn-primary" (click)="openModal()">Add Policy</button>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Policy</h4>
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-white">
+          <form [formGroup]="policyForm" (ngSubmit)="onSubmit()">
+            <input type="text" formControlName="id">
+            <div class="form-group">
+              <label for="title">Policy Nmber</label>
+              <input type="text" formControlName="policyNumber" class="form-control" id="title" placeholder="Enter Policy Number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.policyNumber.errors }" />
+              <div *ngIf="submitted && f.policyNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.policyNumber.errors.required">Policy Number is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="creationDate">Creation Date</label>
+              <input type="text" class="form-control" id="creationDate" placeholder="Creation Date" formControlName="creationDate"  [ngClass]="{ 'is-invalid': submitted && f.creationDate.errors }" />
+              <div *ngIf="submitted && f.creationDate.errors" class="invalid-feedback">
+                <div *ngIf="f.creationDate.errors.required">Creation Date is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="effectiveDate">Effective Date</label>
+              <input type="text" class="form-control" id="effectiveDate" placeholder="Effective Date" formControlName="effectiveDate"  [ngClass]="{ 'is-invalid': submitted && f.effectiveDate.errors }" />
+              <div *ngIf="submitted && f.effectiveDate.errors" class="invalid-feedback">
+                <div *ngIf="f.effectiveDate.errors.required">Effective Date is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="expireDate">Expiry Date</label>
+              <input type="text" class="form-control" id="expireDate" placeholder="Expiry Date" formControlName="expireDate"  [ngClass]="{ 'is-invalid': submitted && f.expireDate.errors }" />
+              <div *ngIf="submitted && f.expireDate.errors" class="invalid-feedback">
+                <div *ngIf="f.expireDate.errors.required">Expiry Date is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="paymentOption">Payment Option</label>
+              <input type="text" class="form-control" id="paymentOption" placeholder="Payment Option" formControlName="paymentOption"  [ngClass]="{ 'is-invalid': submitted && f.paymentOption.errors }" />
+              <div *ngIf="submitted && f.paymentOption.errors" class="invalid-feedback">
+                <div *ngIf="f.paymentOption.errors.required">Payment Option is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="policyAmount">Policy Amount</label>
+              <input type="text" class="form-control" id="policyAmount" placeholder="Policy Amount" formControlName="policyAmount"  [ngClass]="{ 'is-invalid': submitted && f.policyAmount.errors }" />
+              <div *ngIf="submitted && f.policyAmount.errors" class="invalid-feedback">
+                <div *ngIf="f.policyAmount.errors.required">Policy Amount is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label for="extraInfo">Extra Info</label>
+                  <textarea class="form-control" id="extraInfo" placeholder="Extra Info" formControlName="extraInfo"  [ngClass]="{ 'is-invalid': submitted && f.extraInfo.errors }" ></textarea>
+                  <div *ngIf="submitted && f.extraInfo.errors" class="invalid-feedback">
+                    <div *ngIf="f.extraInfo.errors.required">ExtraInfo is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-color btn-xxl">Create</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+<table class="table table-striped">
+  <thead>
+  <th>Number</th>
+  <th>Created At</th>
+  <th>Expire At</th>
+  <th>Amount</th>
+  <th>Payment Information</th>
+  <th>Extra Information</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let policy of policies">
+
+    <td>{{policy.policyNumber}}</td>
+    <td>{{policy.creationDate}}</td>
+    <td>{{policy.expireDate}}</td>
+    <td>{{policy.policyAmount}}</td>
+    <td>{{policy.paymentOption}}</td>
+    <td>{{policy.extraInfo}}</td>
+    <td>
+      <button class="btn btn-primary" (click)="edit(policy.id)">Edit</button>
+      <button class="btn btn-primary" (click)="delete(policy.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
