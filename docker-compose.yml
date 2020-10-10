@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 
 # Each thing that Docker Compose runs is referred to as
 # a "service". In our case, our Rails application is one
