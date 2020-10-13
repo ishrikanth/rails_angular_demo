@@ -9,6 +9,9 @@ services:
   database:
     # Use the postgres 11.5 base image for this container.
     image: postgres:11.5
+    ports:
+      - "5432:5432"
+
 
     volumes:
       # We need to tell Docker where on the PostgreSQL
