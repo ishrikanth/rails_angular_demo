@@ -21,6 +21,9 @@ services:
       - postgres
     restart: unless-stopped
 
+  volumes:
+    postgres:
+    pgadmin:
 
   web:
     # The root directory from which we're building.
