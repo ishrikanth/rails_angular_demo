@@ -8,13 +8,18 @@ services:
 
   postgres:
     container_name: postgres_container
-    image: postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-angular}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-angular}
-    ports:
-      - "5432:5432"
-    restart: unless-stopped
+    image: sameersbn/postgresql:12-20200524
+      ports:
+        - "5432:5432"
+      environment:
+        - DEBUG=false
+
+        - DB_USER=angular
+        - DB_PASS=angular
+        - DB_NAME=angular
+      command: "--wal_keep_segments=32 --logging_collector=off"
+      volumes:
+        - postgresql:/var/lib/postgresql
 
 
 
