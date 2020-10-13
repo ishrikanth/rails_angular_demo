@@ -37,11 +37,7 @@ services:
     # Specify the values of the environment variables
     # used in this container.
     environment:
-      RAILS_ENV: development
-      DATABASE_NAME: rails_angular_demo
-      DATABASE_USER: angular
-      DATABASE_PASSWORD: angular
-      DATABASE_HOST: localhost
+      DATABASE_URL: postgres://postgres@rails_angular_demo
 
 # Declare the volumes that our application uses.
 volumes:
