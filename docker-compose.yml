@@ -6,41 +6,21 @@ version: "3.3"
 # is another service ("database").
 services:
 
-  database:
-    # Use the postgres 11.5 base image for this container.
-    image: postgres:11.5
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-angular}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-angular}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-    command: postgres
-    restart: always
+    networks:
+      - postgres
+    restart: unless-stopped
 
-
-    volumes:
-      # We need to tell Docker where on the PostgreSQL
-      # container we want to keep the PostgreSQL data.
-      # In this case we're telling it to use a directory
-      # called /var/lib/postgresql/data, although it
-      # conceivably could have been something else.
-      #
-      # We're associating this directory with something
-      # called a volume. (You can see all your Docker
-      # volumes by running +docker volume ls+.) The name
-      # of our volume is db_data.
-      - db_data:/var/lib/postgresql/data
-
-      # This copies our init.sql into our container, to
-      # a special file called
-      # /docker-entrypoint-initdb.d/init.sql. Anything
-      # at this location will get executed one per
-      # container, i.e. it will get executed the first
-      # time the container is created but not again.
-      #
-      # The init.sql file is a one-line that creates a
-      # user called (arbitrarily) boats_development.
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   web:
     # The root directory from which we're building.
