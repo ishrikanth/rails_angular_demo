@@ -13,15 +13,12 @@ services:
         - "5432:5432"
       environment:
         - DEBUG=false
-
         - DB_USER=angular
         - DB_PASS=angular
         - DB_NAME=angular
       command: "--wal_keep_segments=32 --logging_collector=off"
       volumes:
         - postgresql:/var/lib/postgresql
-
-
 
   web:
     # The root directory from which we're building.
