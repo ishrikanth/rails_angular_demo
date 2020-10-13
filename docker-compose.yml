@@ -27,7 +27,6 @@ services:
 
   volumes:
     postgres:
-    pgadmin:
 
   web:
     # The root directory from which we're building.
