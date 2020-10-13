@@ -12,8 +12,6 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-angular}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-angular}
-    volumes:
-      - postgres:/data/postgres
     ports:
       - "5432:5432"
     restart: unless-stopped
