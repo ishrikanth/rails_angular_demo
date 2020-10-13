@@ -14,10 +14,33 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      volumes:
-        - ./postgres.conf:/etc/postgresql/postgresql.conf
-      command: postgres -c config_file=/etc/postgresql/postgresql.conf
-      restart: always
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    restart: always
+
+
+    volumes:
+      # We need to tell Docker where on the PostgreSQL
+      # container we want to keep the PostgreSQL data.
+      # In this case we're telling it to use a directory
+      # called /var/lib/postgresql/data, although it
+      # conceivably could have been something else.
+      #
+      # We're associating this directory with something
+      # called a volume. (You can see all your Docker
+      # volumes by running +docker volume ls+.) The name
+      # of our volume is db_data.
+      - db_data:/var/lib/postgresql/data
+
+      # This copies our init.sql into our container, to
+      # a special file called
+      # /docker-entrypoint-initdb.d/init.sql. Anything
+      # at this location will get executed one per
+      # container, i.e. it will get executed the first
+      # time the container is created but not again.
+      #
+      # The init.sql file is a one-line that creates a
+      # user called (arbitrarily) boats_development.
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   web:
     # The root directory from which we're building.
