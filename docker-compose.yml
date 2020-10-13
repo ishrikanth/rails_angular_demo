@@ -8,13 +8,9 @@ services:
 
   database:
     # Use the postgres 11.5 base image for this container.
-    image: postgres:11.5
+    image: postgres
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      restart: always
   web:
     # The root directory from which we're building.
     build: .
