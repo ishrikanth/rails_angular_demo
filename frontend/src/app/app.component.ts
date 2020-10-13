@@ -10,8 +10,10 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = '';
+  public query: string;
 
   constructor(private userService: UserService) {
+    this.query = "dominos"
   }
 
   isLogged(){

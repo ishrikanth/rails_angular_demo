@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-blue">
   <div class="container">
     <a class="navbar-brand" routerLink="/">
-      <img src="assets/images/logo.png" alt="ToDO" />
+      <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png" alt="Angular" width="40px"/>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,6 +12,8 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="/todo">ToDo <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="/policy">Policy</a>
+        <a class="nav-item nav-link" href="/weather">Weather</a>
+        <a class="nav-item nav-link" href="/map">Map</a>
       </div>
     </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -35,3 +37,17 @@
 </div>
 
 <router-outlet></router-outlet>
+<app-map
+  #map
+  lat="12.9794048"
+  lng="77.594624"
+  width="95%"
+  height="530px">
+</app-map>
+<div style="padding: 10px 0">
+  <input type="text" placeholder="Search places..." [(ngModel)]="query" />
+  <button (click)="map.places(query)">Search</button>
+</div>
+
+
+

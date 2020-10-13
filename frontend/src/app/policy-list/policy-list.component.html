@@ -14,7 +14,7 @@
       <div class="modal-body">
         <div class="form-white">
           <form [formGroup]="policyForm" (ngSubmit)="onSubmit()">
-            <input type="text" formControlName="id">
+            <input type="hidden" formControlName="id">
             <div class="form-group">
               <label for="title">Policy Nmber</label>
               <input type="text" formControlName="policyNumber" class="form-control" id="title" placeholder="Enter Policy Number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.policyNumber.errors }" />
@@ -22,8 +22,13 @@
                 <div *ngIf="f.policyNumber.errors.required">Policy Number is required</div>
               </div>
             </div>
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <mat-datepicker-toggle  matSuffix [for]="myPicker"></mat-datepicker-toggle>
+              <mat-datepicker #myPicker></mat-datepicker>
+            </mat-form-field>
             <div class="form-group">
-              <label for="creationDate">Creation Date</label>
+              <label for="creationDate">Creation Date</label>z
               <input type="text" class="form-control" id="creationDate" placeholder="Creation Date" formControlName="creationDate"  [ngClass]="{ 'is-invalid': submitted && f.creationDate.errors }" />
               <div *ngIf="submitted && f.creationDate.errors" class="invalid-feedback">
                 <div *ngIf="f.creationDate.errors.required">Creation Date is required</div>

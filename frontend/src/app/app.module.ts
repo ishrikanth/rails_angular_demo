@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -18,7 +18,17 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import {environment} from "../environments/environment";
 import { PolicyListComponent } from './policy-list/policy-list.component';
 import {AngularFirestore} from "@angular/fire/firestore";
-
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import { WeatherComponent } from './weather/weather.component';
+import { MomentPipe } from './moment.pipe';
+import { MapComponent } from './map/map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +37,10 @@ import {AngularFirestore} from "@angular/fire/firestore";
     TodoComponent,
     NewTodoComponent,
     SignoutComponent,
-    PolicyListComponent
+    PolicyListComponent,
+    WeatherComponent,
+    MomentPipe,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +48,12 @@ import {AngularFirestore} from "@angular/fire/firestore";
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     DragDropModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatCheckboxModule, MatDatepickerModule, MatRadioModule, MatSelectModule
   ],
   providers: [
     AlertService, { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
