@@ -41,6 +41,14 @@ services:
       DATABASE_NAME: rails_angular_demo
       DATABASE_HOST: db
 
+  angular:
+    build: .
+      command: "npm start"
+      ports:
+        - "4200:4200"
+      expose:
+        - "4200"
+
 # Declare the volumes that our application uses.
 volumes:
   db_data:

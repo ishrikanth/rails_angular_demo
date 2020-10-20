@@ -28,3 +28,15 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 # Set "rails server -b 0.0.0.0" as the command to
 # run when this container starts.
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
+ENV NODE_ROOT /front_end
+
+RUN mkdir -p $NODE_ROOT
+
+WORKDIR $NODE_ROOT
+
+COPY ./frontend .
+
+RUN npm install -g @angular/cli
+
+RUN yarn install
