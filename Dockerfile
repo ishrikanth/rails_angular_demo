@@ -1,7 +1,7 @@
 # Use the Ruby 2.7.1 image from Docker Hub
 # as the base image (https://hub.docker.com/_/ruby)
 FROM ruby:2.6.2
-RUN apt-get update && apt-get install -y nodejs && apt-get install -y npm
+RUN apt-get update && apt-get install -y nodejs && apt-get install -y build-essential &&  apt-get install -y npm
 
 # Use a directory called /code in which to store
 # this application's files. (The directory name
