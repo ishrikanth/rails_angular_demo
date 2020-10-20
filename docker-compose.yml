@@ -43,12 +43,13 @@ services:
 
   angular:
     build: .
-      command: "npm start"
-      ports:
-        - "4200:4200"
-      expose:
-        - "4200"
-
+    command: bash -c "npm start"
+    ports:
+      - "4200:4200"
+    expose:
+      - "4200"
+    volumes:
+      - "./:/front_end/"
 # Declare the volumes that our application uses.
 volumes:
   db_data:
